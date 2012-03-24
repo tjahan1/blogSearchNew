@@ -1,0 +1,38 @@
+<h1>Listing posts</h1>
+
+<table>
+  <tr>
+    <th>Author</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>Title</th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.name %></td>
+    <th></th>
+    <th></th>
+    <th></th>
+    <td><%= post.title %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= form_for @search, :url => posts_path, :html => {:method => :get} do |f| %>
+  <%= f.label :title_contains %>
+  <%= f.text_field :title_contains %><br />
+  
+  <!-- etc... -->
+  <%= f.submit %>
+<% end %>
+
+
+
+<br />
+
+<%= link_to 'New Post', new_post_path %>
